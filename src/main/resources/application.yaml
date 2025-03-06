@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: dispatcher
+  datasource:
+    url:  ${DATABASE_URL}
+    username: ${DATABASE_USERNAME}
+    password: ${DATABASE_PASSWORD}
+  sql:
+    init:
+      mode: always
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+owm:
+  url:  https://api.openweathermap.org/data/2.5

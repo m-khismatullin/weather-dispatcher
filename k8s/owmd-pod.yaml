@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: owmd-pod
+  labels:
+    app: owmd-pod
+spec:
+  containers:
+    - name: owmd
+      image: owmd:0.1.0
+      #ports:
+      #  - containerPort:  8080
+      env:
+        - name: DATABASE_URL
+          value:  jdbc:postgresql://localhost:5432/db
+        - name: DATABASE_USERNAME
+          value:  user
+        - name: DATABASE_PASSWORD
+          value:  password
+  initContainers:
+    - name: pgtemp
+      image:  postgres:alpine
+      restartPolicy: Always
+      env:
+        - name: POSTGRES_USER
+          value:  user
+        - name: POSTGRES_PASSWORD
+          value:  password
+        - name: POSTGRES_DB
+          value:  db
